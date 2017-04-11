@@ -1,6 +1,6 @@
 $LOAD_PATH << File.expand_path('. ./lib', __FILE__)
 # require 'martian_robots'
-require 'robot'
+require 'martian_robot'
 
 RSpec.describe MartianRobot do
 

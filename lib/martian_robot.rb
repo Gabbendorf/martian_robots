@@ -26,12 +26,11 @@ class MartianRobot
         end
       end
       if single_instruction == 'R'
-        changed_orientation = change_orientation_clockwise(@orientation)
-        @orientation = changed_orientation
+        @orientation = change_orientation_clockwise(@orientation)
       end
+
       if single_instruction == 'L'
-        changed_orientation = change_orientation_anticlockwise(@orientation)
-        @orientation = changed_orientation
+        @orientation = change_orientation_anticlockwise(@orientation)
       end
     end
     final_position
