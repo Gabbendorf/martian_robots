@@ -1,4 +1,4 @@
-class Orientation
+class OrientationManagement
 
   def change_orientation_clockwise(initial_orientation)
     if initial_orientation == 'N'

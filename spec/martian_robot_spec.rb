@@ -47,14 +47,6 @@ RSpec.describe MartianRobot do
       expect(robot.report_final_position('FFFF')).to eq([5,1])
     end
 
-    it "returns E if robot's initial orientation is N" do
-      expect(robot.change_orientation_clockwise("N")).to eq("E")
-    end
-
-    it "returns W if robot's initial orientation is S" do
-      expect(robot.change_orientation_clockwise("S")).to eq("W")
-    end
-
     it "returns [2,2] if robot starts from [1,1] 'N' and receives 'FRF'" do
       robot = MartianRobot.new([1,1], "N")
       expect(robot.report_final_position("FRF")).to eq([2,2])
@@ -63,14 +55,6 @@ RSpec.describe MartianRobot do
     it "returns [1,-1] if robot starts from [1,1] 'S' and receives 'FFFRRF'" do
       robot = MartianRobot.new([1,1], "S")
       expect(robot.report_final_position("FFFRRF")).to eq([1,-1])
-    end
-
-    it "returns S if robot's initial orientation is W" do
-      expect(robot.change_orientation_anticlockwise("W")).to eq("S")
-    end
-
-    it "returns N if robot's initial orientation is E" do
-      expect(robot.change_orientation_anticlockwise("E")).to eq("N")
     end
 
     it "returns [2,2] if robot starts from [1,1] 'E' and receives 'FLF'" do

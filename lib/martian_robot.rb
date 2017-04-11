@@ -1,3 +1,5 @@
+# require_relative 'orientation_management'
+
 class MartianRobot
 
   attr_reader :coordinates, :orientation
@@ -5,6 +7,7 @@ class MartianRobot
   def initialize(coordinates, orientation)
     @coordinates = coordinates
     @orientation = orientation
+    @orientation_management = OrientationManagement.new
   end
 
   def report_final_position(instruction)
@@ -26,38 +29,14 @@ class MartianRobot
         end
       end
       if single_instruction == 'R'
-        @orientation = change_orientation_clockwise(@orientation)
+        @orientation = @orientation_management.change_orientation_clockwise(@orientation)
       end
 
       if single_instruction == 'L'
-        @orientation = change_orientation_anticlockwise(@orientation)
+        @orientation = @orientation_management.change_orientation_anticlockwise(@orientation)
       end
     end
     final_position
-  end
-
-  def change_orientation_clockwise(initial_orientation)
-    if initial_orientation == 'N'
-      'E'
-    elsif initial_orientation == 'E'
-      'S'
-    elsif initial_orientation == 'S'
-      'W'
-    else
-      'N'
-    end
-  end
-
-  def change_orientation_anticlockwise(initial_orientation)
-    if initial_orientation == 'N'
-      'W'
-    elsif initial_orientation == 'E'
-      'N'
-    elsif initial_orientation == 'S'
-      'E'
-    else
-      'S'
-    end
   end
 
 end
