@@ -9,9 +9,7 @@ class MartianRobot
   end
 
   def report_final_position(instruction)
-    x = @coordinates[0]
-    y = @coordinates[1]
-    final_position = [x, y]
+    final_position = starting_position
     instruction.split('').each do |single_instruction|
       if single_instruction == 'F'
         @movements.move_forward(@orientation, final_position)
@@ -22,6 +20,12 @@ class MartianRobot
       end
     end
     final_position
+  end
+
+  def starting_position
+    x = @coordinates[0]
+    y = @coordinates[1]
+    [x,y]
   end
 
 end
