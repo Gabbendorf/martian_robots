@@ -12,7 +12,6 @@ class MartianRobot
     y = @coordinates[1]
     final_position = [x, y]
     array_of_instructions = instruction.split('')
-
     array_of_instructions.each do |single_instruction|
       if single_instruction == 'F'
         # move_forward(@orientation)

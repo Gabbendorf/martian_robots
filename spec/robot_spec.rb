@@ -83,4 +83,19 @@ RSpec.describe MartianRobot do
       expect(robot.report_final_position("LLFFLF")).to eq([0,3])
     end
 
+    it "returns [2,-1] if robot starts from [0,0] 'E' and receives 'FRFLF'" do
+      robot = MartianRobot.new([0,0], "E")
+      expect(robot.report_final_position("FRFLF")).to eq([2,-1])
+    end
+
+    it "returns [0,2] if robot starts from [0,0] 'N' and receives 'FRLF'" do
+      robot = MartianRobot.new([0,0], "N")
+      expect(robot.report_final_position("FRLF")).to eq([0,2])
+    end
+
+    it "returns [0,-1] if robot starts from [0,0] 'W' and receives 'FFRLFLLFFFRRRLLF'" do
+      robot = MartianRobot.new([0,0], "W")
+      expect(robot.report_final_position("FFRLFLLFFFRRRLLF")).to eq([0,-1])
+    end
+
 end
