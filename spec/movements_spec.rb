@@ -22,5 +22,28 @@ RSpec.describe Movements do
     expect(movements.change_orientation_anticlockwise("E")).to eq("N")
   end
 
+  it "returns 2 as value for coordinate x if robot starts from [1,1] and moves East" do
+    coordinates = [1,1]
+    movements.move_forward('E',coordinates)
+    expect(coordinates[0]).to eq(2)
+  end
+
+  it "returns 2 as value for coordinate y if robot starts from [1,1] and moves North" do
+    coordinates = [1,1]
+    movements.move_forward('N',coordinates)
+    expect(coordinates[1]).to eq(2)
+  end
+
+  it "returns 4 as value for coordinate x if robot starts from [5,3] and moves West" do
+    coordinates = [5,3]
+    movements.move_forward('W',coordinates)
+    expect(coordinates[0]).to eq(4)
+  end
+
+  it "returns 8 as value for coordinate y if robot starts from [7,9] and moves South" do
+    coordinates = [7,9]
+    movements.move_forward('S',coordinates)
+    expect(coordinates[1]).to eq(8)
+  end
 
 end
