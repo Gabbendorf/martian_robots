@@ -7,4 +7,13 @@ The surface of Mars can be modelled by a rectangular grid around which robots ar
 A robot position consists of a grid coordinate (a pair of integers: x-coordinate followed by y-coordinate) and an orientation (N, S, E, W for north, south, east, and west).
 A robot instruction is a string of the letters “L”, “R”, and “F” which represent, respectively, the instructions:
 Left : the robot turns left 90 degrees and remains on the current grid point. Right : the robot turns right 90 degrees and remains on the current grid point. Forward : the robot moves forward one grid point in the direction of the current orientation and maintains the same orientation.
-The direction North corresponds to the direction from grid point (x, y) to grid point (x, y+1). There is also a possibility that additional command types maybe required in the future and provision should be made for this.
+The direction North corresponds to the direction from grid point (x, y) to grid point (x, y+1).
+
+##How to run it:
+From inside `lib` directory: `ruby martian_robot.rb`
+
+##How to run the tests:
+From main directory: `rspec spec`, to run all tests inside `spec` directory
+
+##How to include color when running the tests:
+To add color from the command line: `rspec spec --color`

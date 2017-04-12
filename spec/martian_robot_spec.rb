@@ -1,11 +1,8 @@
 $LOAD_PATH << File.expand_path('. ./lib', __FILE__)
-# require 'martian_robots'
+
 require 'martian_robot'
 
 RSpec.describe MartianRobot do
-
-    let (:robot) {MartianRobot.new(@coordinates, @orientation)}
-    # let(:martian_robots) {MartianRobots.new}
 
     it "returns [2,1] if robot starts from [1,1] 'E' and receives 'F'" do
       robot = MartianRobot.new([1,1], "E")
