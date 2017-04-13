@@ -9,8 +9,8 @@ A robot instruction is a string of the letters “L”, “R”, and “F” whi
 Left : the robot turns left 90 degrees and remains on the current grid point. Right : the robot turns right 90 degrees and remains on the current grid point. Forward : the robot moves forward one grid point in the direction of the current orientation and maintains the same orientation.
 The direction North corresponds to the direction from grid point (x, y) to grid point (x, y+1).
 
-##How to run the tests:
+## How to run the tests:
 From main directory: `rspec spec`, to run all tests inside `spec` directory
 
-##How to include color when running the tests:
+## How to include color when running the tests:
 To add color from the command line: `rspec spec --color`

@@ -1,11 +1,12 @@
 class Movements
 
   def change_orientation_clockwise(initial_orientation)
-    if initial_orientation == 'N'
+    case initial_orientation
+    when 'N'
       'E'
-    elsif initial_orientation == 'E'
+    when'E'
       'S'
-    elsif initial_orientation == 'S'
+    when 'S'
       'W'
     else
       'N'
@@ -13,11 +14,12 @@ class Movements
   end
 
   def change_orientation_anticlockwise(initial_orientation)
-    if initial_orientation == 'N'
+    case initial_orientation
+    when 'N'
       'W'
-    elsif initial_orientation == 'E'
+    when 'E'
       'N'
-    elsif initial_orientation == 'S'
+    when 'S'
       'E'
     else
       'S'
@@ -25,13 +27,14 @@ class Movements
   end
 
   def move_forward(initial_orientation, coordinates)
-    if initial_orientation == 'E'
+    case initial_orientation
+    when 'E'
       coordinates[0] += 1
-    elsif initial_orientation == 'W'
+    when 'W'
       coordinates[0] -= 1
-    elsif initial_orientation == 'N'
+    when 'N'
       coordinates[1] += 1
-    elsif initial_orientation == 'S'
+    else
       coordinates[1] -= 1
     end
   end
