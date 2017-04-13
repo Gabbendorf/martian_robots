@@ -32,7 +32,11 @@ class MartianRobot
   private
 
   def is_robot_lost?(final_position)
-    final_position[0] >= @planet.length || final_position[1] >= @planet.height
+    if final_position[0] >= @planet.size || final_position[1] >= @planet.size
+      true
+    elsif final_position[0] < 0 || final_position[1] < 0
+      true
+    end
   end
 
 end
