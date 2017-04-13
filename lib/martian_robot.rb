@@ -2,10 +2,11 @@ class MartianRobot
 
   attr_reader :coordinates, :orientation
 
-  def initialize(coordinates, orientation)
+  def initialize(coordinates, orientation, size)
     @coordinates = coordinates
     @orientation = orientation
     @movements = Movements.new
+    @planet = Mars.new(size)
   end
 
   def report_final_position(instruction)
@@ -19,13 +20,19 @@ class MartianRobot
         @orientation = @movements.change_orientation_anticlockwise(@orientation)
       end
     end
-    final_position
+    is_robot_lost?(final_position) ? :lost : final_position
   end
 
   def starting_position
     x = @coordinates[0]
     y = @coordinates[1]
     [x,y]
+  end
+
+  private
+
+  def is_robot_lost?(final_position)
+    final_position[0] >= @planet.length || final_position[1] >= @planet.height
   end
 
 end
