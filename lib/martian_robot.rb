@@ -12,11 +12,12 @@ class MartianRobot
   def report_final_position(instruction)
     final_position = starting_position
     instruction.split('').each do |single_instruction|
-      if single_instruction == 'F'
+      case single_instruction
+      when'F'
         @movements.move_forward(@orientation, final_position)
-      elsif single_instruction == 'R'
+      when 'R'
         @orientation = @movements.change_orientation_clockwise(@orientation)
-      elsif single_instruction == 'L'
+      when 'L'
         @orientation = @movements.change_orientation_anticlockwise(@orientation)
       end
     end

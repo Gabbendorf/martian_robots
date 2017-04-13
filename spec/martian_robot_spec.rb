@@ -87,4 +87,19 @@ RSpec.describe MartianRobot do
       expect(final_position).to eq(:lost)
     end
 
+    it "returns :lost if robot final position is outside the limits" do
+      robot = MartianRobot.new([1,1], "W", 3)
+      expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
+
+    it "returns :lost if robot final position is outside the limits" do
+      robot = MartianRobot.new([1,1], "N", 3)
+      expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
+
+    it "returns :lost if robot final position is outside the limits" do
+      robot = MartianRobot.new([1,1], "S", 3)
+      expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
+
 end
