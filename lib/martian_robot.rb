@@ -36,11 +36,11 @@ class MartianRobot
   private
 
   def is_robot_lost?(final_position)
-    if final_position[0] >= @planet.size || final_position[1] >= @planet.size
-      true
-    elsif final_position[0] < 0 || final_position[1] < 0
-      true
-    end
+    is_invalid_coordinate?(final_position[0]) || is_invalid_coordinate?(final_position[1])
+  end
+
+  def is_invalid_coordinate?(coordinate)
+    coordinate < 0 || coordinate >= @planet.size
   end
 
 end
