@@ -1,3 +1,6 @@
+require_relative 'movements'
+require_relative 'mars'
+
 class MartianRobot
 
   attr_reader :coordinates, :orientation

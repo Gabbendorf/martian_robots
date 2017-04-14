@@ -7,12 +7,4 @@ attr_reader :size
     @size = size
   end
 
-  def length
-    @size
-  end
-
-  def height
-    @size
-  end
-
 end
