@@ -14,18 +14,10 @@ class MartianRobot
 
   def report_final_position(instruction)
     final_position = starting_position
-    instruction.split('').each do |single_instruction|
-      case single_instruction
-      when'F'
-        @movements.move_forward(@orientation, final_position)
-      when 'R'
-        @orientation = @movements.change_orientation_clockwise(@orientation)
-      when 'L'
-        @orientation = @movements.change_orientation_anticlockwise(@orientation)
-      end
-    end
+    instruction.split('').each {|single_instruction| execute(single_instruction, final_position)}
     is_robot_lost?(final_position) ? :lost : final_position
   end
+
 
   def starting_position
     x = @coordinates[0]
@@ -34,6 +26,17 @@ class MartianRobot
   end
 
   private
+
+  def execute(instruction, position)
+    case instruction
+    when'F'
+      @movements.move_forward(@orientation, position)
+    when 'R'
+      @orientation = @movements.change_orientation_clockwise(@orientation)
+    when 'L'
+      @orientation = @movements.change_orientation_anticlockwise(@orientation)
+    end
+  end
 
   def is_robot_lost?(final_position)
     is_invalid_coordinate?(final_position[0]) || is_invalid_coordinate?(final_position[1])
