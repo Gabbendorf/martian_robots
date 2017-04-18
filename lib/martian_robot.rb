@@ -5,11 +5,11 @@ class MartianRobot
 
   attr_reader :coordinates, :orientation
 
-  def initialize(coordinates, orientation, size)
+  def initialize(coordinates, orientation, planet)
     @coordinates = coordinates
     @orientation = orientation
     @movements = Movements.new
-    @planet = Mars.new(size)
+    @planet = planet
   end
 
   def report_final_position(instruction)
