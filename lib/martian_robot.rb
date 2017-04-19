@@ -38,8 +38,8 @@ class MartianRobot
     end
   end
 
-  def lost?(final_position)
-    invalid_coordinate?(final_position[0]) || invalid_coordinate?(final_position[1])
+  def lost?(position)
+    invalid_coordinate?(position[0]) || invalid_coordinate?(position[1])
   end
 
   def invalid_coordinate?(coordinate)
