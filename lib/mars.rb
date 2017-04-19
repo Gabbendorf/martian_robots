@@ -3,7 +3,7 @@ class Mars
   attr_reader :size
 
   def initialize(size)
-    raise ArgumentError.new("Size should be bigger than zero") if size <= 0
+    raise ArgumentError.new("Size must be a valid number") if size <= 0 || size.to_i == 0     
     @size = size
   end
 
