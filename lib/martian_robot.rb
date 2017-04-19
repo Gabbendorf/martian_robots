@@ -29,7 +29,7 @@ class MartianRobot
 
   def execute(instruction, position)
     case instruction
-    when'F'
+    when 'F'
       @movements.move_forward(@orientation, position)
     when 'R'
       @orientation = @movements.change_orientation_clockwise(@orientation)
