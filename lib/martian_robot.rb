@@ -15,7 +15,7 @@ class MartianRobot
   def report_final_position(instruction)
     final_position = starting_position
     instruction.split('').each {|single_instruction| execute(single_instruction, final_position)}
-    is_robot_lost?(final_position) ? :lost : final_position
+    lost?(final_position) ? :lost : final_position
   end
 
 
@@ -38,11 +38,11 @@ class MartianRobot
     end
   end
 
-  def is_robot_lost?(final_position)
-    is_invalid_coordinate?(final_position[0]) || is_invalid_coordinate?(final_position[1])
+  def lost?(final_position)
+    invalid_coordinate?(final_position[0]) || invalid_coordinate?(final_position[1])
   end
 
-  def is_invalid_coordinate?(coordinate)
+  def invalid_coordinate?(coordinate)
     coordinate < 0 || coordinate >= @planet.size
   end
 
