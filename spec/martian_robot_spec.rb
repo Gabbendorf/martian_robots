@@ -83,29 +83,31 @@ RSpec.describe MartianRobot do
     expect(final_position).to eq([1,0])
   end
 
-  it "returns :lost if robot final position is outside the limits" do
-    mars = Mars.new(2)
-    robot = MartianRobot.new([1,1], "E", mars)
-    final_position = robot.report_final_position('F')
-    expect(final_position).to eq(:lost)
-  end
+  describe "Robot gets lost" do
+    it "returns :lost if robot final position is outside the limits" do
+      mars = Mars.new(2)
+      robot = MartianRobot.new([1,1], "E", mars)
+      final_position = robot.report_final_position('F')
+      expect(final_position).to eq(:lost)
+    end
 
-  it "returns :lost if robot final position is outside the limits" do
-    mars = Mars.new(3)
-    robot = MartianRobot.new([1,1], "W", mars)
-    expect(robot.report_final_position('FFFF')).to eq(:lost)
-  end
+    it "returns :lost if robot final position is outside the limits" do
+      mars = Mars.new(3)
+      robot = MartianRobot.new([1,1], "W", mars)
+      expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
 
-  it "returns :lost if robot final position is outside the limits" do
-    mars = Mars.new(3)
-    robot = MartianRobot.new([1,1], "N", mars)
-    expect(robot.report_final_position('FFFF')).to eq(:lost)
-  end
+    it "returns :lost if robot final position is outside the limits" do
+      mars = Mars.new(3)
+      robot = MartianRobot.new([1,1], "N", mars)
+      expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
 
-  it "returns :lost if robot final position is outside the limits" do
-    mars = Mars.new(3)
-    robot = MartianRobot.new([1,1], "S", mars)
-    expect(robot.report_final_position('FFFF')).to eq(:lost)
+    it "returns :lost if robot final position is outside the limits" do
+      mars = Mars.new(3)
+      robot = MartianRobot.new([1,1], "S", mars)
+      expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
   end
 
 end
