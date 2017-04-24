@@ -25,6 +25,18 @@ class MartianRobot
     [x,y]
   end
 
+  def leave_scent_before_getting_lost(final_position)
+    if final_position[0] > @planet.size
+      [@planet.size, final_position[1]]
+    elsif final_position[1] > @planet.size
+      [final_position[0], @planet.size]
+    elsif final_position[0] < 0
+      [0, final_position[1]]
+    else
+      [final_position[0], 0]
+    end
+  end
+
   private
 
   def execute(instruction, position)
@@ -45,5 +57,7 @@ class MartianRobot
   def invalid_coordinate?(coordinate)
     coordinate < 0 || coordinate >= @planet.size
   end
+
+
 
 end

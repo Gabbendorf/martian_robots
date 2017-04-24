@@ -110,4 +110,34 @@ RSpec.describe MartianRobot do
     end
   end
 
+  describe "Robot leaves scent" do
+    it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
+      mars = Mars.new(4)
+      lost_robot = MartianRobot.new([1,1], "N", mars)
+      # final_position = new_robot.report_final_position('FRFLFRFFFF')
+      expect(lost_robot.leave_scent_before_getting_lost([6,3])).to eq([4,3])
+    end
+
+    it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
+      mars = Mars.new(4)
+      lost_robot = MartianRobot.new([2,2], "E", mars)
+      # final_position = new_robot.report_final_position('FRFFFF')
+      expect(lost_robot.leave_scent_before_getting_lost([3,-2])).to eq([3,0])
+    end
+
+    it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
+      mars = Mars.new(4)
+      lost_robot = MartianRobot.new([2,2], "W", mars)
+      # final_position = new_robot.report_final_position('FLFRFFF')
+      expect(lost_robot.leave_scent_before_getting_lost([-2,1])).to eq([0,1])
+    end
+
+    it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
+      mars = Mars.new(4)
+      lost_robot = MartianRobot.new([2,2], "N", mars)
+      # final_position = new_robot.report_final_position('FRFLFFFF')
+      expect(lost_robot.leave_scent_before_getting_lost([3,7])).to eq([3,4])
+    end
+  end
+
 end
