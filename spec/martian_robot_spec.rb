@@ -52,9 +52,9 @@ RSpec.describe MartianRobot do
     expect(robot.report_final_position("FRF")).to eq([2,2])
   end
 
-  it "returns [2,0] if robot starts from [2,2] 'S' and receives 'FFFRRF'" do
+  it "returns [2,1] if robot starts from [2,2] 'S' and receives 'FFRRF'" do
     robot = MartianRobot.new([2,2], "S", mars)
-    expect(robot.report_final_position("FFFRRF")).to eq([2,0])
+    expect(robot.report_final_position("FFRRF")).to eq([2,1])
   end
 
   it "returns [2,2] if robot starts from [1,1] 'E' and receives 'FLF'" do
@@ -77,10 +77,10 @@ RSpec.describe MartianRobot do
     expect(robot.report_final_position("FRLF")).to eq([1,3])
   end
 
-  it "returns [1,0] if robot starts from [1,1] 'W' and receives 'FFRLFLLFFFRRRLLF'" do
-    robot = MartianRobot.new([1,1], "W", mars)
-    final_position = robot.report_final_position("FFRLFLLFFFRRRLLF")
-    expect(final_position).to eq([1,0])
+  it "returns [0,3] if robot starts from [2,2] 'W' and receives 'FRFLFRRL'" do
+    robot = MartianRobot.new([2,2], "W", mars)
+    final_position = robot.report_final_position("FRFLFRRL")
+    expect(final_position).to eq([0,3])
   end
 
   describe "Robot gets lost" do
@@ -107,6 +107,12 @@ RSpec.describe MartianRobot do
       mars = Mars.new(3)
       robot = MartianRobot.new([1,1], "S", mars)
       expect(robot.report_final_position('FFFF')).to eq(:lost)
+    end
+
+    it "returns :lost if robot gets back once it's lost" do
+      mars = Mars.new(3)
+      robot = MartianRobot.new([1,1], "N", mars)
+      expect(robot.report_final_position('FFFFRRFFFF')).to eq(:lost)
     end
   end
 

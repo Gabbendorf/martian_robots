@@ -14,7 +14,12 @@ class MartianRobot
 
   def report_final_position(instruction)
     final_position = starting_position
-    instruction.split('').each {|single_instruction| execute(single_instruction, final_position)}
+    instruction.split('').each {|single_instruction|
+      execute(single_instruction, final_position)
+      if lost?(final_position)
+        break
+      end
+    }
     lost?(final_position) ? :lost : final_position
   end
 
