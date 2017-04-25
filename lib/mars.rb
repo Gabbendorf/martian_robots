@@ -1,3 +1,5 @@
+require_relative 'martian_robot'
+
 class Mars
 
   attr_reader :size
@@ -5,6 +7,12 @@ class Mars
   def initialize(size)
     raise ArgumentError.new("Size must be a valid number") if size <= 0
     @size = size
+    @scents = []
+  end
+
+  def remember_scent(position)
+    @scents << position
+    @scents
   end
 
 end

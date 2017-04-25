@@ -20,24 +20,25 @@ class MartianRobot
       end
     }
     if lost?(@coordinates)
-      last_position_before_lost(@coordinates, @orientation)
+      :lost
+      # last_position_before_lost
     else
       @coordinates
     end
     # lost?(@coordinates) ? :lost : @coordinates
   end
 
-  def last_position_before_lost(position, orientation)
-    last_position = [[position[0], position[1]], orientation]
-      if position[0] > @planet.size
-        last_position[0][0] = @planet.size
-      elsif position[1] > @planet.size
-        last_position[0][1] = @planet.size
-      elsif position[0] < 0
-        last_position[0][0] = 0
-      else
-        last_position[0][1] = 0
-      end
+  def last_position_before_lost
+    last_position = [@coordinates[0], @coordinates[1]]
+    if @coordinates[0] > @planet.size
+      last_position[0] = @planet.size
+    elsif @coordinates[1] > @planet.size
+      last_position[1] = @planet.size
+    elsif @coordinates[0] < 0
+      last_position[0] = 0
+    else
+      last_position[1] = 0
+    end
     last_position
   end
 
