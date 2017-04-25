@@ -83,66 +83,66 @@ RSpec.describe MartianRobot do
     expect(final_position).to eq([0,3])
   end
 
-  describe "Robot gets lost" do
-    it "returns :lost if robot final position is outside the limits" do
-      mars = Mars.new(1)
-      robot = MartianRobot.new([1,1], "E", mars)
-      final_position = robot.report_final_position('F')
-      expect(final_position).to eq(:lost)
-    end
-
-    it "returns :lost if robot final position is outside the limits" do
-      mars = Mars.new(3)
-      robot = MartianRobot.new([1,1], "W", mars)
-      expect(robot.report_final_position('FFFF')).to eq(:lost)
-    end
-
-    it "returns :lost if robot final position is outside the limits" do
-      mars = Mars.new(3)
-      robot = MartianRobot.new([1,1], "N", mars)
-      expect(robot.report_final_position('FFFF')).to eq(:lost)
-    end
-
-    it "returns :lost if robot final position is outside the limits" do
-      mars = Mars.new(3)
-      robot = MartianRobot.new([1,1], "S", mars)
-      expect(robot.report_final_position('FFFF')).to eq(:lost)
-    end
-
-    it "returns :lost if robot gets back inside the grid once it got out" do
-      mars = Mars.new(3)
-      robot = MartianRobot.new([1,1], "N", mars)
-      expect(robot.report_final_position('FFFRRFFF')).to eq(:lost)
-    end
-  end
+  # describe "Robot gets lost" do
+  #   it "returns :lost if robot final position is outside the limits" do
+  #     mars = Mars.new(1)
+  #     robot = MartianRobot.new([1,1], "E", mars)
+  #     final_position = robot.report_final_position('F')
+  #     expect(final_position).to eq(:lost)
+  #   end
+  #
+  #   it "returns :lost if robot final position is outside the limits" do
+  #     mars = Mars.new(3)
+  #     robot = MartianRobot.new([1,1], "W", mars)
+  #     expect(robot.report_final_position('FFFF')).to eq(:lost)
+  #   end
+  #
+  #   it "returns :lost if robot final position is outside the limits" do
+  #     mars = Mars.new(3)
+  #     robot = MartianRobot.new([1,1], "N", mars)
+  #     expect(robot.report_final_position('FFFF')).to eq(:lost)
+  #   end
+  #
+  #   it "returns :lost if robot final position is outside the limits" do
+  #     mars = Mars.new(3)
+  #     robot = MartianRobot.new([1,1], "S", mars)
+  #     expect(robot.report_final_position('FFFF')).to eq(:lost)
+  #   end
+  #
+  #   it "returns :lost if robot gets back inside the grid once it got out" do
+  #     mars = Mars.new(3)
+  #     robot = MartianRobot.new([1,1], "N", mars)
+  #     expect(robot.report_final_position('FFFRRFFF')).to eq(:lost)
+  #   end
+  # end
 
   describe "Robot leaves scent" do
     it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
       mars = Mars.new(4)
       lost_robot = MartianRobot.new([1,1], "N", mars)
-      # final_position = new_robot.report_final_position('FRFLFRFFFF')
-      expect(lost_robot.leave_scent_before_getting_lost([6,3])).to eq([4,3])
+      last_position = lost_robot.report_final_position('FRFLFRFFFF')
+      expect(last_position).to eq([[4,3],'E'])
     end
 
     it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
       mars = Mars.new(4)
       lost_robot = MartianRobot.new([2,2], "E", mars)
-      # final_position = new_robot.report_final_position('FRFFFF')
-      expect(lost_robot.leave_scent_before_getting_lost([3,-2])).to eq([3,0])
+      last_position = lost_robot.report_final_position('FRFFFF')
+      expect(last_position).to eq([[3,0],'S'])
     end
 
     it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
       mars = Mars.new(4)
       lost_robot = MartianRobot.new([2,2], "W", mars)
-      # final_position = new_robot.report_final_position('FLFRFFF')
-      expect(lost_robot.leave_scent_before_getting_lost([-2,1])).to eq([0,1])
+      last_position = lost_robot.report_final_position('FLFRFFF')
+      expect(last_position).to eq([[0,1],'W'])
     end
 
     it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
       mars = Mars.new(4)
       lost_robot = MartianRobot.new([2,2], "N", mars)
-      # final_position = new_robot.report_final_position('FRFLFFFF')
-      expect(lost_robot.leave_scent_before_getting_lost([3,7])).to eq([3,4])
+      last_position = lost_robot.report_final_position('FRFLFFFF')
+      expect(last_position).to eq([[3,4],'N'])
     end
   end
 

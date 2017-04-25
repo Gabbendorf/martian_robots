@@ -19,19 +19,26 @@ class MartianRobot
         break
       end
     }
-    lost?(@coordinates) ? :lost : @coordinates
+    if lost?(@coordinates)
+      last_position_before_lost(@coordinates, @orientation)
+    else
+      @coordinates
+    end
+    # lost?(@coordinates) ? :lost : @coordinates
   end
 
-  def leave_scent_before_getting_lost(final_position)
-    if final_position[0] > @planet.size
-      [@planet.size, final_position[1]]
-    elsif final_position[1] > @planet.size
-      [final_position[0], @planet.size]
-    elsif final_position[0] < 0
-      [0, final_position[1]]
-    else
-      [final_position[0], 0]
-    end
+  def last_position_before_lost(position, orientation)
+    last_position = [[position[0], position[1]], orientation]
+      if position[0] > @planet.size
+        last_position[0][0] = @planet.size
+      elsif position[1] > @planet.size
+        last_position[0][1] = @planet.size
+      elsif position[0] < 0
+        last_position[0][0] = 0
+      else
+        last_position[0][1] = 0
+      end
+    last_position
   end
 
   private
@@ -39,7 +46,7 @@ class MartianRobot
   def execute(instruction)
     case instruction
     when 'F'
-      @coordinates = @movements.move_forward(@orientation, @coordinates)
+      @movements.move_forward(@orientation, @coordinates)
     when 'R'
       @orientation = @movements.change_orientation_clockwise(@orientation)
     when 'L'
