@@ -1,5 +1,3 @@
-require_relative 'martian_robot'
-
 class Mars
 
   attr_reader :size
@@ -13,6 +11,10 @@ class Mars
   def remember_scent(position)
     @scents << position
     @scents
+  end
+
+  def scent?(position)
+    @scents.include?(position)
   end
 
 end

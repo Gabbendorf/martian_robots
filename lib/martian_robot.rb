@@ -21,11 +21,9 @@ class MartianRobot
     }
     if lost?(@coordinates)
       :lost
-      # last_position_before_lost
     else
       @coordinates
     end
-    # lost?(@coordinates) ? :lost : @coordinates
   end
 
   def last_position_before_lost
