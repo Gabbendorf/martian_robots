@@ -29,13 +29,13 @@ class Movements
   def move_forward(initial_orientation, coordinates)
     case initial_orientation
     when 'E'
-      coordinates[0] += 1
+      [(coordinates[0] += 1),coordinates[1]]
     when 'W'
-      coordinates[0] -= 1
+      [(coordinates[0] -= 1),coordinates[1]]
     when 'N'
-      coordinates[1] += 1
+      [coordinates[0],(coordinates[1] += 1)]
     else
-      coordinates[1] -= 1
+      [coordinates[0],(coordinates[1] -= 1)]
     end
   end
 
