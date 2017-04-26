@@ -20,12 +20,7 @@ class MartianRobot
       # end
     }
     if lost?(@coordinates)
-      if @planet.scent?(last_position_before_lost)
-        last_position_before_lost
-      else
-        @planet.remember_scent(last_position_before_lost)
-        :lost
-      end
+      stop_or_get_lost
     else
       @coordinates
     end
@@ -46,6 +41,15 @@ class MartianRobot
   end
 
   private
+
+  def stop_or_get_lost
+    if @planet.scent?(last_position_before_lost)
+      last_position_before_lost
+    else
+      @planet.remember_scent(last_position_before_lost)
+      :lost
+    end
+  end
 
   def execute(instruction)
     case instruction
