@@ -15,9 +15,7 @@ class MartianRobot
   def report_final_position(instruction)
     instruction.split('').each {|single_instruction|
       execute(single_instruction)
-      # if lost?(@coordinates)
-      #   break
-      # end
+      break if lost_before_executing_all_instruction(@coordinates)
     }
     if lost?(@coordinates)
       stop_or_get_lost
@@ -41,6 +39,10 @@ class MartianRobot
   end
 
   private
+
+  def lost_before_executing_all_instruction(current_position)
+    lost?(current_position)
+  end
 
   def stop_or_get_lost
     if @planet.scent?(last_position_before_lost)

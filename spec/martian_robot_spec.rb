@@ -107,7 +107,7 @@ RSpec.describe MartianRobot do
       expect(robot.report_final_position('FFFF')).to eq(:lost)
     end
 
-    xit "returns :lost if robot gets back inside the grid once it got out" do
+    it "returns :lost if robot gets back inside the confines once it got out" do
       mars = Mars.new(3)
       robot = MartianRobot.new([1,1], "N", mars)
       expect(robot.report_final_position('FFFRRFFF')).to eq(:lost)
@@ -173,7 +173,7 @@ RSpec.describe MartianRobot do
       expect(position).to eq([2,4])
     end
 
-    it "retuns :lost if it gets off the confines and no other robot left its scent on the same position before" do
+    it "returns :lost if it gets off the confines and no other robot left its scent on the same position before" do
       mars = Mars.new(4)
       robot = MartianRobot.new([2,2], "N", mars)
       robot.report_final_position('FFF')

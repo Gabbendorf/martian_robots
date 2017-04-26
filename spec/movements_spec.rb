@@ -1,6 +1,4 @@
-$LOAD_PATH << File.expand_path('. ./lib', __FILE__)
-
-require 'movements'
+require_relative '../lib/movements'
 
 RSpec.describe Movements do
 
@@ -51,5 +49,5 @@ RSpec.describe Movements do
       expect(coordinates[1]).to eq(8)
     end
   end
-  
+
 end
