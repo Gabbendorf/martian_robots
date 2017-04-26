@@ -10,7 +10,6 @@ class Mars
 
   def remember_scent(position)
     @scents << position
-    @scents
   end
 
   def scent?(position)

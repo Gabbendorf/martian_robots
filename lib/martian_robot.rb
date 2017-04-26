@@ -15,12 +15,17 @@ class MartianRobot
   def report_final_position(instruction)
     instruction.split('').each {|single_instruction|
       execute(single_instruction)
-      if lost?(@coordinates)
-        break
-      end
+      # if lost?(@coordinates)
+      #   break
+      # end
     }
     if lost?(@coordinates)
-      :lost
+      if @planet.scent?(last_position_before_lost)
+        last_position_before_lost
+      else
+        @planet.remember_scent(last_position_before_lost)
+        :lost
+      end
     else
       @coordinates
     end

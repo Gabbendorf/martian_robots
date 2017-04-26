@@ -20,24 +20,13 @@ RSpec.describe Mars do
 
   describe "Mars remembers points before robots got lost" do
     it "adds the scent of robot lost" do
-      mars = Mars.new(4)
-
-      lost_robot = MartianRobot.new([2,2], "W", mars)
-      lost_robot.report_final_position('FLFRFFF')
-      last_position = lost_robot.last_position_before_lost
-      scent = mars.remember_scent(last_position)
-
-      lost_robot = MartianRobot.new([2,2], "N", mars)
-      lost_robot.report_final_position('FRFLFFFF')
-      last_position = lost_robot.last_position_before_lost
-      scent = mars.remember_scent(last_position)
-
-      lost_robot = MartianRobot.new([2,2], "E", mars)
-      lost_robot.report_final_position('FRFFFF')
-      last_position = lost_robot.last_position_before_lost
-      scent = mars.remember_scent(last_position)
-
-      expect(scent).to eq([[0,1], [3,4], [3,0]])
+      scent = [0,1]
+      all_scents = mars.remember_scent(scent)
+      scent1 = [3,4]
+      all_scents = mars.remember_scent(scent1)
+      scent2 = [3,0]
+      all_scents = mars.remember_scent(scent2)
+      expect(all_scents).to eq([[0,1], [3,4], [3,0]])
     end
   end
 

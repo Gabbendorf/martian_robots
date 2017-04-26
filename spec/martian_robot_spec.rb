@@ -107,15 +107,15 @@ RSpec.describe MartianRobot do
       expect(robot.report_final_position('FFFF')).to eq(:lost)
     end
 
-    it "returns :lost if robot gets back inside the grid once it got out" do
+    xit "returns :lost if robot gets back inside the grid once it got out" do
       mars = Mars.new(3)
       robot = MartianRobot.new([1,1], "N", mars)
       expect(robot.report_final_position('FFFRRFFF')).to eq(:lost)
     end
   end
 
-  describe "Robot leaves scent" do
-    it "leaves its scent on the spot in planet before getting off the confines and returns coordinates of that spot" do
+  describe "Robot leaves scent when gets off the confines" do
+    it "leaves its scent on the spot before getting off the confines and returns coordinates of that spot" do
       mars = Mars.new(4)
       lost_robot = MartianRobot.new([1,1], "N", mars)
       lost_robot.report_final_position('FRFLFRFFFF')
@@ -141,6 +141,45 @@ RSpec.describe MartianRobot do
       lost_robot = MartianRobot.new([2,2], "N", mars)
       lost_robot.report_final_position('FRFLFFFF')
       expect(lost_robot.last_position_before_lost).to eq([3,4])
+    end
+  end
+
+  it "leaves its scent and Mars adds it" do
+    mars = Mars.new(4)
+    lost_robot = MartianRobot.new([2,2], "N", mars)
+    last_position = lost_robot.report_final_position('FRFLFFFF')
+    mars.remember_scent(last_position)
+    expect(mars.scent?(last_position)).to eq(true)
+  end
+
+  describe "The robot knows if another robot got lost from same point before " do
+    it "stops and returns current position if after this another robot got lost from this position before" do
+      mars = Mars.new(4)
+      robot = MartianRobot.new([2,2], "N", mars)
+      robot.report_final_position('FFF')
+      new_robot = MartianRobot.new([1,1], "N", mars)
+      position = new_robot.report_final_position('FRFLFFF')
+      expect(position).to eq([2,4])
+    end
+
+    it "stops and returns current position if after this another robot got lost from this position before" do
+      mars = Mars.new(4)
+      first_robot = MartianRobot.new([2,2], "N", mars)
+      first_robot.report_final_position('FFF')
+      second_robot = MartianRobot.new([1,1], "N", mars)
+      second_robot.report_final_position('FRFLFFF')
+      third_robot = MartianRobot.new([2,3], "N", mars)
+      position = third_robot.report_final_position('FF')
+      expect(position).to eq([2,4])
+    end
+
+    it "retuns :lost if it gets off the confines and no other robot left its scent on the same position before" do
+      mars = Mars.new(4)
+      robot = MartianRobot.new([2,2], "N", mars)
+      robot.report_final_position('FFF')
+      new_robot = MartianRobot.new([2,3], "N", mars)
+      position = new_robot.report_final_position('FRFLFFF')
+      expect(position).to eq(:lost)
     end
   end
 
